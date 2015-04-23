@@ -83,7 +83,7 @@ int main()
     libro.setYear("2010");
     libro.setEditorial("Porrua");
 /*
-    fstream archivo("/Users/michel/cerealLibro.json", ios::out);
+    fstream archivo("cerealLibro.json", ios::out);
     cereal::JSONOutputArchive salida( archivo );
 
     salida << libro; // serealizamos un libro
