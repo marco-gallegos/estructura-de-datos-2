@@ -309,7 +309,7 @@ compiler_clean:
 
 ####### Compile
 
-main.o: ../ejercicio-cifrado/main.cpp 
+main.o: ../ejercicio-cifrado/main.cpp ../ejercicio-cifrado/cifrador.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../ejercicio-cifrado/main.cpp
 
 cifrador.o: ../ejercicio-cifrado/cifrador.cpp ../ejercicio-cifrado/cifrador.h

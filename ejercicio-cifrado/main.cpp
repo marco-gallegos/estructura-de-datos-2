@@ -7,5 +7,6 @@ int main(int argc, char *argv[])
 
     cifrador c;
     c.cifrar('a');
+    c.descifrar('a');
     return 0;
 }
