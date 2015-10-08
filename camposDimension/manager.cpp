@@ -7,7 +7,7 @@ Manager::Manager()
 void Manager::escribir(Libro libro)
 {
     fstream archivo("/home/cebox/librosCampos.txt",
-                    ios::out | ios::app | ios::binary);
+                    ios::out | ios::app );
 
     if (archivo.is_open())
     {
@@ -32,13 +32,14 @@ void Manager::escribir(Libro libro)
 
     }
 
+
     archivo.close();
 }
 
 void Manager::mostrar()
 {
     fstream archivo("/home/cebox/librosCampos.txt",
-                    ios::in | ios::binary);
+                    ios::in);
 
     if ( archivo.is_open() )
     {
