@@ -40,28 +40,28 @@ int main(int argc, char *argv[])
         switch (opc) {
         case 1:
 
-            cout<<"nombre  ";
+            cout<<"nombre         -> ";
             getline(cin,x);
             aux.setName(x);
-            cout<<"protagonistas  ";
+            cout<<"protagonistas  -> ";
             getline(cin,x);
             aux.setProtagonistas(x);
-            cout<<"director  ";
+            cout<<"director       -> ";
             getline(cin,x);
             aux.setDirector(x);
-            cout<<"estudio  ";
+            cout<<"estudio        -> ";
             getline(cin,x);
             aux.setEstudio(x);
-            cout<<"genero  ";
+            cout<<"genero         -> ";
             getline(cin,x);
             aux.setGenero(x);
-            cout<<"año  ";
+            cout<<"año            -> ";
             getline(cin,x);
             aux.setAnio_estre(x);
-            cout<<"premios  ";
+            cout<<"premios        -> ";
             getline(cin,x);
             aux.setPremios(x);
-            cout<<"calificacion  ";
+            cout<<"calificacion   -> ";
             getline(cin,x);
             aux.setCalif(x);
             //cout<<"archivo   ";cin>>s;cin.ignore();
@@ -207,9 +207,6 @@ void mostrar_cmp(string nom)
         delete anio;
         delete prem;
         delete calif;
-
     }
-
-
     arch.close();
 }
