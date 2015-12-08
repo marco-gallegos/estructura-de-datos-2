@@ -2,6 +2,7 @@
 #include<fstream>
 #include<pelicula.h>
 #include<iostream>
+#include<QTextStream>
 
 using namespace std;
 
@@ -16,7 +17,7 @@ Guerrero Segura Miguel Angel
 */
 
 
-
+string excluirseparador(string ej,int cont);
 void guardar_cmp(string nom, pelicula peli);
 void mostrar_cmp(string nom);
 
@@ -26,6 +27,12 @@ void mostrar_cmp(string nom);
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
+
+
+    string put="hola s";
+
+
+
     pelicula aux;
     string x;
     string s;
@@ -97,8 +104,17 @@ void guardar_cmp(string nom, pelicula peli)
         cout<<"no se puede crear archivo";
         return;
     }
-    //string regis= peli.getName()+"|"+peli.getProtagonistas()+"|"+peli.getDirector()+"|"+peli.getEstudio()+"|"+peli.getGenero()+"|"+peli.getAnio_estre()+"|"+peli.getPremios()+"|"+peli.getCalif();
+    string regis= peli.getName()+"|"+peli.getProtagonistas()+"|"+peli.getDirector()+"|"+peli.getEstudio()+"|"+peli.getGenero()+"|"+peli.getAnio_estre()+"|"+peli.getPremios()+"|"+peli.getCalif()+"\n";
+
+    int tam = regis.length();
+
+    arch.write((char *)&tam,sizeof(tam));
+    arch.write(regis.c_str(),tam);
+
+
+  /*
     int tam=peli.getName().length();
+
     arch.write((char *)&tam,sizeof(tam));
     arch.write(peli.getName().c_str(),tam);
 
@@ -129,12 +145,14 @@ void guardar_cmp(string nom, pelicula peli)
     tam=peli.getCalif().length();
     arch.write((char *)&tam,sizeof(tam));
     arch.write(peli.getCalif().c_str(),tam);
-
+*/
     arch.close();
 }
 
 void mostrar_cmp(string nom)
 {
+
+
     fstream arch(nom.c_str(),ios::in);
     if(!arch.is_open())
     {
@@ -145,10 +163,41 @@ void mostrar_cmp(string nom)
 
     while (!arch.eof())
     {
+
         arch.read((char *)&tam,sizeof(tam));
         if(arch.eof())  break;
 
-        char * prot,*dire,*est,*gen,*anio,*prem,*calif;
+        char *registro=new char[tam+1];
+        arch.read(registro,tam);
+        registro[tam]='\0';
+
+
+        string cpc;
+
+        cpc=excluirseparador(registro,1);
+        cout<<cpc<<endl;
+
+        cpc=excluirseparador(registro,2);
+        cout<<cpc<<endl;
+        cpc=excluirseparador(registro,3);
+        cout<<cpc<<endl;
+
+        cpc=excluirseparador(registro,4);
+        cout<<cpc<<endl;
+
+        cpc=excluirseparador(registro,5);
+        cout<<cpc<<endl;
+
+        cpc=excluirseparador(registro,6);
+        cout<<cpc<<endl;
+
+        cpc=excluirseparador(registro,7);
+        cout<<cpc<<endl;
+
+        cpc=excluirseparador(registro,8);
+        cout<<cpc<<endl;
+        cout<<"****************************"<<endl;
+        /*char * prot,*dire,*est,*gen,*anio,*prem,*calif;
 
         char * nom=new char[tam+1];
         arch.read(nom,tam);
@@ -207,6 +256,25 @@ void mostrar_cmp(string nom)
         delete anio;
         delete prem;
         delete calif;
+        */
     }
     arch.close();
+}
+
+string excluirseparador(string ej,int cont)
+{
+
+    int i=0,pos=0;
+    while (i<(cont-1))
+    {
+        if(ej[pos]=='|'||ej[pos]=='\n')
+            i++;
+        pos++;
+    }
+    string aux;
+    for(pos;(ej[pos]!='|' && ej[pos]!='\n');pos++)
+    {
+        aux=aux+ej[pos];
+    }
+    return aux;
 }
